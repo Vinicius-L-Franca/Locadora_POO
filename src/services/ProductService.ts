@@ -18,4 +18,14 @@ export default class ProductService {
   listProducts(): Product[] {
     return this.database.getProducts();
   }
+
+  purchaseProduct(index: number): void {
+    const product = this.database.getProducts()[index];
+
+    if (!product) {
+      throw new Error("Produto não encontrado.");
+    }
+
+    product.sell();
+  }
 }

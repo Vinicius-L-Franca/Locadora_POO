@@ -1,8 +1,9 @@
 export default abstract class Product {
     private title!: string;
-    private purchasePrice!: number;
+    private salePrice!: number;
     private rentalPrice!: number;
     private type!: string;
+    private available = true;
     
     getTitle():string{
         return this.title
@@ -12,12 +13,12 @@ export default abstract class Product {
         this.title = title
     }
 
-    getPurchasePrice():number{
-        return this.purchasePrice
+    getSalePrice(): number {
+        return this.salePrice;
     }
 
-    setPurchasePrice(purchasePrice:number):void{
-        this.purchasePrice = purchasePrice
+    setSalePrice(salePrice: number): void {
+        this.salePrice = salePrice;
     }
 
     getRentalPrice():number{
@@ -34,6 +35,18 @@ export default abstract class Product {
 
     setType(type:string):void{
         this.type = type
+    }
+
+    isAvailable(): boolean {
+        return this.available;
+    }
+
+    sell(): void {
+        if (!this.available) {
+            throw new Error("Produto indisponível.");
+        }
+
+        this.available = false;
     }
 
     abstract register(ask: (question: string) => string): void;

@@ -12,7 +12,7 @@ export default class Movie extends Product{
 
     register(ask: (question: string) => string): void {
         this.setTitle(ask("Digite o nome do filme"));
-        this.setPurchasePrice(Number(ask("Digite o preço de compra")));
+        this.setSalePrice(Number(ask("Digite o preço de venda")));
         this.setRentalPrice(Number(ask("Digite o preço de aluguel")));
         this.setType("filme");
         this.setDurationInMinutes(ask("Digite a duração em minutos"));

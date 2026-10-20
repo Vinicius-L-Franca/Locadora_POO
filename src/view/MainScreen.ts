@@ -19,12 +19,12 @@ export default class MainScreen {
     let option = 0;
     while (option !== 3) {
       const input = this.ask(
-        "DIGITE:\n1 para Cadastrar um produto\n2 para Listar os produtos\n3 para Sair\n4 para listar os clientes cadastrados\n5 para cadastrar um cliente\n"
+        "DIGITE:\n1 para Cadastrar um produto\n2 para Listar os produtos\n3 para Sair\n4 para listar os clientes cadastrados\n5 para cadastrar um cliente\n6 para Comprar um produto\n"
       );
       option = Number(input);
       switch (option) {
         case 1:
-          this.registerScreen();
+          this.registerProductScreen();
           break;
         case 2:
           this.listProducts();
@@ -37,13 +37,16 @@ export default class MainScreen {
         case 5:
           this.registerClientScreen();
           break;
+        case 6:
+          this.purchaseScreen();
+          break;
         default:
-          console.log("Entre com um número entre 1 e 5");
+          console.log("Entre com um número entre 1 e 6");
       }
     }
   }
 
-  private registerScreen(): void {
+  private registerProductScreen(): void {
     try {
       const type = this.ask("Qual o tipo? (filme/jogo/serie)\n");
       this.controller.registerProduct(type, this.ask.bind(this));
@@ -75,8 +78,20 @@ export default class MainScreen {
     for (let i = 0; i < products.length; i++) {
       const product = products[i];
       console.log(
-        `${i + 1}. ${product.getTitle()} | ${product.getType()} | Compra: R$${product.getPurchasePrice()} | Aluguel: R$${product.getRentalPrice()}`
+        `${i + 1}. ${product.getTitle()} | ${product.getType()} | Venda: R$${product.getSalePrice()} | Aluguel: R$${product.getRentalPrice()} | ${product.isAvailable() ? "Disponível" : "Vendido"}`
       );
+    }
+  }
+
+  private purchaseScreen(): void {
+    try {
+      const productNumber = Number(
+        this.ask("Digite o número do produto que deseja comprar: ")
+      );
+      this.controller.purchaseProduct(productNumber - 1);
+      console.log("Produto comprado com sucesso.");
+    } catch (error) {
+      console.log((error as Error).message);
     }
   }
 

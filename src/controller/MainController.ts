@@ -29,6 +29,10 @@ export default class MainController{
     return this.productService.listProducts();
   }
 
+  public purchaseProduct(index: number): void {
+    this.productService.purchaseProduct(index);
+  }
+
   public listClients(): Client[] {
     return this.clientService.listClients();
   }
