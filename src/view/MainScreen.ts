@@ -17,9 +17,9 @@ export default class MainScreen {
 
   private openFirstScreen(): void {
     let option = 0;
-    while (option !== 3) {
+    while (option !== 6) {
       const input = this.ask(
-        "DIGITE:\n1 para Cadastrar um produto\n2 para Listar os produtos\n3 para Sair\n4 para listar os clientes cadastrados\n5 para cadastrar um cliente\n6 para Comprar um produto\n"
+        "DIGITE:\n1 para Cadastrar um produto\n2 para cadastrar um cliente\n3 para Comprar um produto\n4 para Listar os produtos\n5 para listar os clientes cadastrados\n6 para Sair\n"
       );
       option = Number(input);
       switch (option) {
@@ -27,18 +27,18 @@ export default class MainScreen {
           this.registerProductScreen();
           break;
         case 2:
-          this.listProducts();
-          break;
-        case 3:
-          break;
-        case 4:
-          this.listClients();
-          break;
-        case 5:
           this.registerClientScreen();
           break;
-        case 6:
+        case 3:
           this.purchaseScreen();
+          break;
+        case 4:
+          this.listProducts();
+          break;
+        case 5:
+          this.listClients();
+          break;
+        case 6:
           break;
         default:
           console.log("Entre com um número entre 1 e 6");
@@ -67,6 +67,18 @@ export default class MainScreen {
     }
   }
 
+  private purchaseScreen(): void {
+    try {
+      const productNumber = Number(
+        this.ask("Digite o número do produto que deseja comprar: ")
+      );
+      this.controller.purchaseProduct(productNumber - 1);
+      console.log("Produto comprado com sucesso.");
+    } catch (error) {
+      console.log((error as Error).message);
+    }
+  }
+
   private listProducts(): void {
     const products = this.controller.listProducts();
 
@@ -80,18 +92,6 @@ export default class MainScreen {
       console.log(
         `${i + 1}. ${product.getTitle()} | ${product.getType()} | Venda: R$${product.getSalePrice()} | Aluguel: R$${product.getRentalPrice()} | ${product.isAvailable() ? "Disponível" : "Vendido"}`
       );
-    }
-  }
-
-  private purchaseScreen(): void {
-    try {
-      const productNumber = Number(
-        this.ask("Digite o número do produto que deseja comprar: ")
-      );
-      this.controller.purchaseProduct(productNumber - 1);
-      console.log("Produto comprado com sucesso.");
-    } catch (error) {
-      console.log((error as Error).message);
     }
   }
 
