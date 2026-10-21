@@ -1,90 +1,95 @@
 "use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || (function () {
-    var ownKeys = function(o) {
-        ownKeys = Object.getOwnPropertyNames || function (o) {
-            var ar = [];
-            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
-            return ar;
-        };
-        return ownKeys(o);
-    };
-    return function (mod) {
-        if (mod && mod.__esModule) return mod;
-        var result = {};
-        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
-        __setModuleDefault(result, mod);
-        return result;
-    };
-})();
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const ProductFactory_1 = __importDefault(require("../model/ProductFactory"));
-const readline = __importStar(require("readline"));
+const promptSync = require("prompt-sync");
 class MainScreen {
+    ask(question) {
+        return this.prompt(question);
+    }
     constructor(controller) {
-        this.rl = readline.createInterface({
-            input: process.stdin,
-            output: process.stdout,
-        });
+        this.prompt = promptSync();
         this.controller = controller;
         this.openFirstScreen();
     }
-    ask(question) {
-        return new Promise((resolve) => {
-            this.rl.question(question, (answer) => {
-                resolve(answer);
-            });
-        });
-    }
-    async openFirstScreen() {
+    openFirstScreen() {
         let option = 0;
-        while (option != 3) {
-            const input = await this.ask("DIGITE:\n1 para Cadastrar\n2.para Listar\n3.para Sair\n");
+        while (option !== 6) {
+            const input = this.ask("DIGITE:\n1 para Cadastrar um produto\n2 para cadastrar um cliente\n3 para Comprar um produto\n4 para Listar os produtos\n5 para listar os clientes cadastrados\n6 para Sair\n=================\n\n");
             option = Number(input);
             switch (option) {
                 case 1:
-                    try {
-                        await this.registerScreen();
-                    }
-                    catch (error) {
-                        console.log(error.message);
-                    }
+                    this.registerProductScreen();
                     break;
                 case 2:
-                    this.controller.listProducts();
+                    this.registerClientScreen();
                     break;
                 case 3:
+                    this.purchaseScreen();
+                    break;
+                case 4:
+                    this.listProducts();
+                    break;
+                case 5:
+                    this.listClients();
+                    break;
+                case 6:
                     break;
                 default:
-                    console.log("Entre com um número entre 1 e 3");
-                    break;
+                    console.log("Entre com um número entre 1 e 6");
             }
         }
-        this.rl.close();
     }
-    async registerScreen() {
-        const type = await this.ask("Qual o tipo? (filme/jogo/serie)");
-        const product = ProductFactory_1.default.create(type);
-        await product.register(this.ask.bind(this));
-        this.controller.database.products.push(product);
+    registerProductScreen() {
+        try {
+            const type = this.ask("Qual o tipo? (filme/jogo/serie)\n");
+            this.controller.registerProduct(type, this.ask.bind(this));
+            console.log("Produto cadastrado com sucesso.");
+        }
+        catch (error) {
+            console.log(error.message);
+        }
+    }
+    registerClientScreen() {
+        try {
+            const name = this.ask("Qual o nome do cliente?\n");
+            const contact = this.ask("Qual o contato do cliente?\n");
+            this.controller.registerClient(name, contact);
+            console.log("Cliente cadastrado com sucesso.");
+        }
+        catch (error) {
+            console.log(error.message);
+        }
+    }
+    purchaseScreen() {
+        try {
+            const productNumber = Number(this.ask("Digite o número do produto que deseja comprar: "));
+            this.controller.purchaseProduct(productNumber - 1);
+            console.log("Produto comprado com sucesso.");
+        }
+        catch (error) {
+            console.log(error.message);
+        }
+    }
+    listProducts() {
+        const products = this.controller.listProducts();
+        if (products.length === 0) {
+            console.log("Nenhum produto cadastrado.");
+            return;
+        }
+        for (let i = 0; i < products.length; i++) {
+            const product = products[i];
+            console.log(`${i + 1}. ${product.getTitle()} | ${product.getType()} | Venda: R$${product.getSalePrice()} | Aluguel: R$${product.getRentalPrice()} | ${product.isAvailable() ? "Disponível" : "Vendido"}`);
+        }
+    }
+    listClients() {
+        const clients = this.controller.listClients();
+        if (clients.length === 0) {
+            console.log("Nenhum cliente cadastrado.");
+            return;
+        }
+        for (let i = 0; i < clients.length; i++) {
+            const client = clients[i];
+            console.log(`${i + 1}. ${client.getName()} | contato: ${client.getContact()}`);
+        }
     }
 }
 exports.default = MainScreen;

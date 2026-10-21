@@ -1,17 +1,20 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 class Product {
+    constructor() {
+        this.available = true;
+    }
     getTitle() {
         return this.title;
     }
     setTitle(title) {
         this.title = title;
     }
-    getPurchasePrice() {
-        return this.purchasePrice;
+    getSalePrice() {
+        return this.salePrice;
     }
-    setPurchasePrice(purchasePrice) {
-        this.purchasePrice = purchasePrice;
+    setSalePrice(salePrice) {
+        this.salePrice = salePrice;
     }
     getRentalPrice() {
         return this.rentalPrice;
@@ -24,6 +27,15 @@ class Product {
     }
     setType(type) {
         this.type = type;
+    }
+    isAvailable() {
+        return this.available;
+    }
+    sell() {
+        if (!this.available) {
+            throw new Error("Produto indisponível.");
+        }
+        this.available = false;
     }
 }
 exports.default = Product;

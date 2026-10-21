@@ -19,7 +19,7 @@ export default class MainScreen {
     let option = 0;
     while (option !== 6) {
       const input = this.ask(
-        "DIGITE:\n1 para Cadastrar um produto\n2 para cadastrar um cliente\n3 para Comprar um produto\n4 para Listar os produtos\n5 para listar os clientes cadastrados\n6 para Sair\n"
+        "DIGITE:\n1 para Cadastrar um produto\n2 para cadastrar um cliente\n3 para Comprar um produto\n4 para Listar os produtos\n5 para listar os clientes cadastrados\n6 para Sair\n=================\n\n"
       );
       option = Number(input);
       switch (option) {

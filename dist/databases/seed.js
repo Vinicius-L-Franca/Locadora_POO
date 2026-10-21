@@ -1,0 +1,33 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.seedDatabase = seedDatabase;
+const Client_1 = require("../model/Client");
+const Game_1 = require("../model/Game");
+const Movie_1 = require("../model/Movie");
+const Series_1 = require("../model/Series");
+function seedDatabase(database) {
+    const movie = new Movie_1.default();
+    movie.setTitle("Interestelar");
+    movie.setSalePrice(60);
+    movie.setRentalPrice(10);
+    movie.setType("filme");
+    movie.setDurationInMinutes("169");
+    const game = new Game_1.default();
+    game.setTitle("Minecraft");
+    game.setSalePrice(150);
+    game.setRentalPrice(20);
+    game.setType("jogo");
+    game.setPlatform("PC");
+    const serie = new Series_1.default();
+    serie.setTitle("Breaking Bad");
+    serie.setSalePrice(100);
+    serie.setRentalPrice(15);
+    serie.setType("serie");
+    serie.setEpisodes("62");
+    database.addProduct(movie);
+    database.addProduct(game);
+    database.addProduct(serie);
+    database.addClient(new Client_1.default("Ana", "1111-1111"));
+    database.addClient(new Client_1.default("Bruno", "2222-2222"));
+    database.addClient(new Client_1.default("Carlos", "3333-3333"));
+}

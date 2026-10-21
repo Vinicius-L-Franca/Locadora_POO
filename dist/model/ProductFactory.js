@@ -1,11 +1,8 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const Movie_1 = __importDefault(require("../model/Movie"));
-const Game_1 = __importDefault(require("../model/Game"));
-const Series_1 = __importDefault(require("../model/Series"));
+const Movie_1 = require("../model/Movie");
+const Game_1 = require("../model/Game");
+const Series_1 = require("../model/Series");
 class ProductFactory {
     static create(type) {
         switch (type) {

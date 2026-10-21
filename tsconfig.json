@@ -4,6 +4,7 @@
   "outDir": "./dist",
   "rootDir": "./src",
   "module": "commonjs",
-  "types": ["node"]
-  }
+  "types": ["node", "jest"]
+  },
+  "exclude": ["**/*.test.ts"]
 }
