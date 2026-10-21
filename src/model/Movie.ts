@@ -1,4 +1,5 @@
 import Product from "./Product";
+import { ProductType } from "./ProductType";
 
 export default class Movie extends Product{
     private durationInMinutes!: string
@@ -14,7 +15,7 @@ export default class Movie extends Product{
         this.setTitle(ask("Digite o nome do filme"));
         this.setSalePrice(Number(ask("Digite o preço de venda")));
         this.setRentalPrice(Number(ask("Digite o preço de aluguel")));
-        this.setType("filme");
+        this.setType(ProductType.Movie);
         this.setDurationInMinutes(ask("Digite a duração em minutos"));
     }
 }

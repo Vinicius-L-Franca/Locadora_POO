@@ -2,6 +2,7 @@ import Product from "../model/Product";
 import ProductService from "../services/ProductService";
 import Client from "../model/Client";
 import ClientService from "../services/ClientService";
+import { parseProductType } from "../model/ProductType";
 
 export default class MainController{
 
@@ -15,7 +16,7 @@ export default class MainController{
     type: string,
     ask: (question: string) => string
   ): void {
-    this.productService.registerProduct(type, ask);
+    this.productService.registerProduct(parseProductType(type), ask);
   }
 
   public registerClient(

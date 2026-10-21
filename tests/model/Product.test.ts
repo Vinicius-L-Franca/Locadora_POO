@@ -1,5 +1,6 @@
-import Product from "./Product";
-import Movie from "./Movie";
+import Product from "../../src/model/Product";
+import Movie from "../../src/model/Movie";
+import { ProductType } from "../../src/model/ProductType";
 
 class FakeProduct extends Product {
   register(): void {}
@@ -44,7 +45,7 @@ describe("Product", () => {
     expect(movie.getTitle()).toBe("Matrix");
     expect(movie.getSalePrice()).toBe(25);
     expect(movie.getRentalPrice()).toBe(8);
-    expect(movie.getType()).toBe("filme");
+    expect(movie.getType()).toBe(ProductType.Movie);
     expect(movie.getDurationInMinutes()).toBe("120");
     expect(ask).toHaveBeenCalledTimes(4);
   });

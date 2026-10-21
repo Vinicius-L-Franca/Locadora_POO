@@ -1,4 +1,4 @@
-import Client from "./Client";
+import Client from "../../src/model/Client";
 
 describe("Client", () => {
   it("deve armazenar nome e contato", () => {

@@ -1,8 +1,10 @@
+import { ProductType } from "./ProductType";
+
 export default abstract class Product {
     private title!: string;
     private salePrice!: number;
     private rentalPrice!: number;
-    private type!: string;
+    private type!: ProductType;
     private available = true;
     
     getTitle():string{
@@ -29,11 +31,11 @@ export default abstract class Product {
         this.rentalPrice = rentalPrice
     }
 
-    getType():string{
+    getType():ProductType{
         return this.type
     }
 
-    setType(type:string):void{
+    setType(type:ProductType):void{
         this.type = type
     }
 

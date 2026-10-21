@@ -2,15 +2,16 @@ import Product from "../model/Product";
 import Movie from "../model/Movie";
 import Game from "../model/Game";
 import Serie from "../model/Series";
+import { ProductType } from "./ProductType";
 
 export default class ProductFactory {
-  static create(type: string): Product {
+  static create(type: ProductType): Product {
     switch (type) {
-      case "filme":
+      case ProductType.Movie:
         return new Movie();
-      case "jogo":
+      case ProductType.Game:
         return new Game();
-      case "serie":
+      case ProductType.Serie:
         return new Serie();
       default:
         throw new Error("Tipo inválido");

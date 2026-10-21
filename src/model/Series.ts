@@ -1,4 +1,5 @@
 import Product from "./Product";
+import { ProductType } from "./ProductType";
 
 export default class Serie extends Product{
     private episodes!: string
@@ -14,7 +15,7 @@ export default class Serie extends Product{
         this.setTitle(ask("Digite o nome da serie"));
         this.setSalePrice(Number(ask("Digite o preço de venda")));
         this.setRentalPrice(Number(ask("Digite o preço de aluguel")));
-        this.setType("serie");
+        this.setType(ProductType.Serie);
         this.setEpisodes(ask("Digite a quantidade de episódios"));
     }
 }

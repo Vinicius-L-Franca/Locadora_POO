@@ -1,5 +1,5 @@
-import Database from "./Database";
-import Client from "../model/Client";
+import Database from "../../src/databases/Database";
+import Client from "../../src/model/Client";
 
 describe("Database", () => {
   it("deve adicionar e listar clientes", () => {

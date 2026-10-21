@@ -3,27 +3,28 @@ import Client from "../model/Client";
 import Game from "../model/Game";
 import Movie from "../model/Movie";
 import Serie from "../model/Series";
+import { ProductType } from "../model/ProductType";
 
 export function seedDatabase(database: Database): void {
   const movie = new Movie();
   movie.setTitle("Interestelar");
   movie.setSalePrice(60);
   movie.setRentalPrice(10);
-  movie.setType("filme");
+  movie.setType(ProductType.Movie);
   movie.setDurationInMinutes("169");
 
   const game = new Game();
   game.setTitle("Minecraft");
   game.setSalePrice(150);
   game.setRentalPrice(20);
-  game.setType("jogo");
+  game.setType(ProductType.Game);
   game.setPlatform("PC");
 
   const serie = new Serie();
   serie.setTitle("Breaking Bad");
   serie.setSalePrice(100);
   serie.setRentalPrice(15);
-  serie.setType("serie");
+  serie.setType(ProductType.Serie);
   serie.setEpisodes("62");
 
   database.addProduct(movie);

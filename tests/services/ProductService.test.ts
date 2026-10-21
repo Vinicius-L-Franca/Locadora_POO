@@ -1,6 +1,7 @@
-import Database from "../databases/Database";
-import ProductService from "./ProductService";
-import Movie from "../model/Movie";
+import Database from "../../src/databases/Database";
+import ProductService from "../../src/services/ProductService";
+import Movie from "../../src/model/Movie";
+import { ProductType } from "../../src/model/ProductType";
 
 describe("ProductService", () => {
   let database: Database;
@@ -19,7 +20,7 @@ describe("ProductService", () => {
       .mockReturnValueOnce("15")
       .mockReturnValueOnce("195");
 
-    service.registerProduct("filme", ask);
+    service.registerProduct(ProductType.Movie, ask);
 
     const products = service.listProducts();
     expect(products).toHaveLength(1);
@@ -28,9 +29,9 @@ describe("ProductService", () => {
   });
 
   it("registerProduct() deve lançar erro para tipo inválido", () => {
-    expect(() => service.registerProduct("livro", () => "")).toThrow(
-      "Tipo inválido"
-    );
+    expect(() =>
+      service.registerProduct("livro" as ProductType, () => "")
+    ).toThrow("Tipo inválido");
   });
 
   it("purchaseProduct() deve marcar o produto como vendido", () => {
