@@ -14,7 +14,7 @@ describe("ProductType", () => {
   });
 
   it("parseProductType deve lançar erro para string inválida", () => {
-    expect(() => parseProductType("livro")).toThrow("Tipo inválido");
-    expect(() => parseProductType("")).toThrow("Tipo inválido");
+    expect(() => parseProductType("livro")).toThrow('Tipo "livro" inválido.');
+    expect(() => parseProductType("")).toThrow('Tipo "" inválido.');
   });
 });

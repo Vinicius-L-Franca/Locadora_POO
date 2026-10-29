@@ -19,7 +19,7 @@ describe("ProductFactory", () => {
 
   it("deve lançar erro para tipo inválido", () => {
     expect(() => ProductFactory.create("livro" as ProductType)).toThrow(
-      "Tipo inválido"
+      'Tipo "livro" inválido.'
     );
   });
 });

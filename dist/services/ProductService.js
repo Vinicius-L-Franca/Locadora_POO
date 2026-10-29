@@ -17,7 +17,7 @@ class ProductService {
     purchaseProduct(index) {
         const product = this.database.getProducts()[index];
         if (!product) {
-            throw Errors_1.default.productNotFound();
+            throw Errors_1.default.productNotFound(index + 1);
         }
         product.sell();
     }

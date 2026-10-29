@@ -46,7 +46,7 @@ export default abstract class Product {
 
     sell(): void {
         if (!this.available) {
-            throw ModelError.productUnavailable();
+            throw ModelError.productUnavailable(this.title);
         }
 
         this.available = false;

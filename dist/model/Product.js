@@ -34,7 +34,7 @@ class Product {
     }
     sell() {
         if (!this.available) {
-            throw Errors_1.default.productUnavailable();
+            throw Errors_1.default.productUnavailable(this.title);
         }
         this.available = false;
     }

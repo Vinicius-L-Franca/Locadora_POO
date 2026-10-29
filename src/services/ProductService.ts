@@ -25,7 +25,7 @@ export default class ProductService {
     const product = this.database.getProducts()[index];
 
     if (!product) {
-      throw ModelError.productNotFound();
+      throw ModelError.productNotFound(index + 1);
     }
 
     product.sell();

@@ -15,7 +15,7 @@ class ProductFactory {
             case ProductType_1.ProductType.Serie:
                 return new Series_1.default();
             default:
-                throw Errors_1.default.invalidProductType();
+                throw Errors_1.default.invalidProductType(type);
         }
     }
 }

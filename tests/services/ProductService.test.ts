@@ -31,7 +31,7 @@ describe("ProductService", () => {
   it("registerProduct() deve lançar erro para tipo inválido", () => {
     expect(() =>
       service.registerProduct("livro" as ProductType, () => "")
-    ).toThrow("Tipo inválido");
+    ).toThrow('Tipo "livro" inválido.');
   });
 
   it("purchaseProduct() deve marcar o produto como vendido", () => {
@@ -45,6 +45,8 @@ describe("ProductService", () => {
   });
 
   it("purchaseProduct() deve lançar erro para índice inexistente", () => {
-    expect(() => service.purchaseProduct(5)).toThrow("Produto não encontrado.");
+    expect(() => service.purchaseProduct(5)).toThrow(
+      "Produto de número 6 não encontrado."
+    );
   });
 });

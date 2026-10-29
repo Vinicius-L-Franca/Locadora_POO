@@ -15,7 +15,7 @@ export default class ProductFactory {
       case ProductType.Serie:
         return new Serie();
       default:
-        throw ModelError.invalidProductType();
+        throw ModelError.invalidProductType(type);
     }
   }
 }

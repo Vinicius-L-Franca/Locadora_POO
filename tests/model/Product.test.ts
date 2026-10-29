@@ -20,8 +20,11 @@ describe("Product", () => {
 
   it("sell() deve lançar erro quando o produto já foi vendido", () => {
     const product = new FakeProduct();
+    product.setTitle("Interestelar");
     product.sell();
-    expect(() => product.sell()).toThrow("Produto indisponível.");
+    expect(() => product.sell()).toThrow(
+      'Produto "Interestelar" indisponível.'
+    );
   });
 
   it("deve armazenar e retornar preço e título", () => {

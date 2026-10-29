@@ -12,7 +12,7 @@ var ProductType;
 function parseProductType(value) {
     const type = Object.values(ProductType).find((t) => t === value);
     if (!type) {
-        throw Errors_1.default.invalidProductType();
+        throw Errors_1.default.invalidProductType(value);
     }
     return type;
 }

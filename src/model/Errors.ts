@@ -1,13 +1,13 @@
 export default class ModelError extends Error {
-  static invalidProductType(): ModelError {
-    return new ModelError("Tipo inválido");
+  static invalidProductType(value: string): ModelError {
+    return new ModelError(`Tipo "${value}" inválido.`);
   }
 
-  static productUnavailable(): ModelError {
-    return new ModelError("Produto indisponível.");
+  static productUnavailable(title: string): ModelError {
+    return new ModelError(`Produto "${title}" indisponível.`);
   }
 
-  static productNotFound(): ModelError {
-    return new ModelError("Produto não encontrado.");
+  static productNotFound(number: number): ModelError {
+    return new ModelError(`Produto de número ${number} não encontrado.`);
   }
 }
