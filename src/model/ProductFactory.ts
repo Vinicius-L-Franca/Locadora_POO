@@ -14,8 +14,6 @@ export default class ProductFactory {
         return new Game();
       case ProductType.Serie:
         return new Serie();
-      default:
-        throw ModelError.invalidProductType(type);
     }
   }
 }
