@@ -11,6 +11,10 @@ export default class Movie extends Product{
         return this.durationInMinutes
     }
 
+    static describe(): string {
+        return "Movie representa filmes que podem ser vendidos ou alugados.";
+    }
+
     register(ask: (question: string) => string): void {
         this.setTitle(ask("Digite o nome do filme"));
         this.setSalePrice(Number(ask("Digite o preço de venda")));

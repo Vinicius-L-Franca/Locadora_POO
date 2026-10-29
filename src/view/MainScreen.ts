@@ -19,7 +19,7 @@ export default class MainScreen {
     let option = 0;
     while (option !== 6) {
       const input = this.ask(
-        "DIGITE:\n1 para Cadastrar um produto\n2 para cadastrar um cliente\n3 para Comprar um produto\n4 para Listar os produtos\n5 para listar os clientes cadastrados\n6 para Sair\n=================\n\n"
+        "DIGITE:\n1 para Cadastrar um produto\n2 para cadastrar um cliente\n3 para Comprar um produto\n4 para Listar os produtos\n5 para listar os clientes cadastrados\n6 para Sair\n7 para mostrar as descrições\n=================\n\n"
       );
       option = Number(input);
       switch (option) {
@@ -40,8 +40,11 @@ export default class MainScreen {
           break;
         case 6:
           break;
+        case 7:
+          this.showDescriptions();
+          break;
         default:
-          console.log("Entre com um número entre 1 e 6");
+          console.log("Entre com um número entre 1 e 7");
       }
     }
   }
@@ -109,5 +112,12 @@ export default class MainScreen {
         `${i + 1}. ${client.getName()} | contato: ${client.getContact()}`
       );
     }
+  }
+
+  private showDescriptions(): void {
+    const descriptions = this.controller.listDescriptions();
+
+    console.log("\nDescrições das classes:");
+    descriptions.forEach((description) => console.log(description));
   }
 }

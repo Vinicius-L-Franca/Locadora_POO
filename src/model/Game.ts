@@ -11,6 +11,10 @@ export default class Game extends Product{
         return this.platfmorm
     }
 
+    static describe(): string {
+        return "Game representa jogos que podem ser vendidos ou alugados.";
+    }
+
     register(ask: (question: string) => string): void {
         this.setTitle(ask("Digite o nome do jogo"));
         this.setSalePrice(Number(ask("Digite o preço de venda")));

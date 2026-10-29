@@ -11,6 +11,10 @@ export default class Serie extends Product{
         return this.episodes;
     }
 
+    static describe(): string {
+        return "Serie representa séries que podem ser vendidas ou alugadas.";
+    }
+
     register(ask: (question: string) => string): void {
         this.setTitle(ask("Digite o nome da serie"));
         this.setSalePrice(Number(ask("Digite o preço de venda")));

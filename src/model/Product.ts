@@ -1,7 +1,8 @@
 import { ProductType } from "./ProductType";
 import ModelError from "./Errors";
+import Description from "./Description";
 
-export default abstract class Product {
+export default abstract class Product extends Description {
     private title!: string;
     private salePrice!: number;
     private rentalPrice!: number;
@@ -50,6 +51,10 @@ export default abstract class Product {
         }
 
         this.available = false;
+    }
+
+    static describe(): string {
+        return "Product representa a classe base dos produtos da locadora.";
     }
 
     abstract register(ask: (question: string) => string): void;
