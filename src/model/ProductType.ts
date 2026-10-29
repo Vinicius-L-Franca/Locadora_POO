@@ -6,9 +6,17 @@ export enum ProductType {
   Serie = "serie",
 }
 export function parseProductType(value: string): ProductType {
-  const type = Object.values(ProductType).find((t) => t === value);
-  if (!type) {
-    throw ModelError.invalidProductType(value);
+  if (value === ProductType.Movie) {
+    return ProductType.Movie;
   }
-  return type;
+
+  if (value === ProductType.Game) {
+    return ProductType.Game;
+  }
+
+  if (value === ProductType.Serie) {
+    return ProductType.Serie;
+  }
+
+  throw ModelError.invalidProductType(value);
 }

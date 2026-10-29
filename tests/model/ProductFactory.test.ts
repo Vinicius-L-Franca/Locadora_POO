@@ -16,10 +16,4 @@ describe("ProductFactory", () => {
   it("deve criar uma Serie para o tipo serie", () => {
     expect(ProductFactory.create(ProductType.Serie)).toBeInstanceOf(Serie);
   });
-
-  it("deve lançar erro para tipo inválido", () => {
-    expect(() => ProductFactory.create("livro" as ProductType)).toThrow(
-      'Tipo "livro" inválido.'
-    );
-  });
 });

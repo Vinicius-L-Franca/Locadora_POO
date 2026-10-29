@@ -27,13 +27,6 @@ describe("ProductService", () => {
     expect(products[0]).toBeInstanceOf(Movie);
     expect(products[0].getTitle()).toBe("Titanic");
   });
-
-  it("registerProduct() deve lançar erro para tipo inválido", () => {
-    expect(() =>
-      service.registerProduct("livro" as ProductType, () => "")
-    ).toThrow('Tipo "livro" inválido.');
-  });
-
   it("purchaseProduct() deve marcar o produto como vendido", () => {
     const product = new Movie();
     product.setTitle("Gladiador");

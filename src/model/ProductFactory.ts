@@ -2,7 +2,6 @@ import Product from "../model/Product";
 import Movie from "../model/Movie";
 import Game from "../model/Game";
 import Serie from "../model/Series";
-import ModelError from "./Errors";
 import { ProductType } from "./ProductType";
 
 export default class ProductFactory {

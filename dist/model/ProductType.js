@@ -10,9 +10,14 @@ var ProductType;
     ProductType["Serie"] = "serie";
 })(ProductType || (exports.ProductType = ProductType = {}));
 function parseProductType(value) {
-    const type = Object.values(ProductType).find((t) => t === value);
-    if (!type) {
-        throw Errors_1.default.invalidProductType(value);
+    if (value === ProductType.Movie) {
+        return ProductType.Movie;
     }
-    return type;
+    if (value === ProductType.Game) {
+        return ProductType.Game;
+    }
+    if (value === ProductType.Serie) {
+        return ProductType.Serie;
+    }
+    throw Errors_1.default.invalidProductType(value);
 }
