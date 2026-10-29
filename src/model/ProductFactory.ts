@@ -2,6 +2,7 @@ import Product from "../model/Product";
 import Movie from "../model/Movie";
 import Game from "../model/Game";
 import Serie from "../model/Series";
+import ModelError from "./Errors";
 import { ProductType } from "./ProductType";
 
 export default class ProductFactory {
@@ -14,7 +15,7 @@ export default class ProductFactory {
       case ProductType.Serie:
         return new Serie();
       default:
-        throw new Error("Tipo inválido");
+        throw ModelError.invalidProductType();
     }
   }
 }

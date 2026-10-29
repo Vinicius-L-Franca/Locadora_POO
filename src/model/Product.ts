@@ -1,4 +1,5 @@
 import { ProductType } from "./ProductType";
+import ModelError from "./Errors";
 
 export default abstract class Product {
     private title!: string;
@@ -45,7 +46,7 @@ export default abstract class Product {
 
     sell(): void {
         if (!this.available) {
-            throw new Error("Produto indisponível.");
+            throw ModelError.productUnavailable();
         }
 
         this.available = false;

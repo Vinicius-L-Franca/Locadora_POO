@@ -1,6 +1,7 @@
 import Database from "../databases/Database";
 import Product from "../model/Product";
 import ProductFactory from "../model/ProductFactory";
+import ModelError from "../model/Errors";
 import { ProductType } from "../model/ProductType";
 
 export default class ProductService {
@@ -24,7 +25,7 @@ export default class ProductService {
     const product = this.database.getProducts()[index];
 
     if (!product) {
-      throw new Error("Produto não encontrado.");
+      throw ModelError.productNotFound();
     }
 
     product.sell();

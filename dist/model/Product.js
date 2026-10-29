@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const Errors_1 = require("./Errors");
 class Product {
     constructor() {
         this.available = true;
@@ -33,7 +34,7 @@ class Product {
     }
     sell() {
         if (!this.available) {
-            throw new Error("Produto indisponível.");
+            throw Errors_1.default.productUnavailable();
         }
         this.available = false;
     }

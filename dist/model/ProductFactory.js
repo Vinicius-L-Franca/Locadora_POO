@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Movie_1 = require("../model/Movie");
 const Game_1 = require("../model/Game");
 const Series_1 = require("../model/Series");
+const Errors_1 = require("./Errors");
 const ProductType_1 = require("./ProductType");
 class ProductFactory {
     static create(type) {
@@ -14,7 +15,7 @@ class ProductFactory {
             case ProductType_1.ProductType.Serie:
                 return new Series_1.default();
             default:
-                throw new Error("Tipo inválido");
+                throw Errors_1.default.invalidProductType();
         }
     }
 }
