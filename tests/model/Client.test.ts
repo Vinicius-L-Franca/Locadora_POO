@@ -7,18 +7,14 @@ describe("Client", () => {
     expect(client.getContact()).toBe("joao@email.com");
   });
 
-  it("contato deve ser opcional", () => {
+  it("usa o nome quando o contato não é informado", () => {
     const client = new Client("Maria");
     expect(client.getName()).toBe("Maria");
     expect(client.getContact()).toBe("");
+    expect(client.toString()).toBe("Maria");
   });
 
-  it("toString() deve retornar apenas o nome por padrão", () => {
-    const client = new Client("João", "joao@email.com");
-    expect(client.toString()).toBe("João");
-  });
-
-  it("toString(true) deve retornar nome e contato", () => {
+  it("toString(true) deve incluir o contato", () => {
     const client = new Client("João", "joao@email.com");
     expect(client.toString(true)).toBe("João - joao@email.com");
   });
